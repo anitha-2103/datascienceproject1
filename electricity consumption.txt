@@ -1,0 +1,36 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from pandas import read_csv
+path= "/content/drive/MyDrive/energy sdc.2.csv"
+electricity=pd.read_csv(path)
+
+print(electricity)
+
+print(electricity.shape)
+print(electricity.head(5))
+print(electricity.tail(4))
+print(electricity.info())
+print(electricity.describe())
+print("column data")
+print(electricity.columns)
+print(electricity[electricity['State'].str.startswith('M')])
+print(electricity[electricity['State'].str.endswith('a')])
+rcb=electricity[electricity['State']=='Manipur']
+print(len(rcb))
+print(electricity.sort_values(by='State'))
+print(np.max(electricity['Consumption']))
+print(np.min(electricity['Consumption']))
+print(np.mean(electricity['Consumption']))
+print(electricity[electricity['State']=='Andhra']['Consumption'].max())
+print(electricity[electricity['State']=='Andhra']['Consumption'].min())
+state1_data=electricity[electricity['State']=='Andhra']
+print("Andhra Data")
+print(state1_data)
+state2_data=electricity[electricity['State']=='Karnataka']
+state4_data=electricity[electricity['State']=='Telangana']
+state5_data=electricity[electricity['State']=='Tripura']
+fig,axes=plt.subplots(2)
+axes[0].plot(state1_data['Date'],state1_data['Consumption'],marker='*',color='red')
+axes[1].plot(state2_data['Date'],state1_data['Consumption'],marker='^',color='black')
+
